@@ -1,0 +1,188 @@
+[
+    {
+        "id": "bef9f2c8.7c26a",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6fcfec1f.b29ec4",
+        "type": "function",
+        "z": "bef9f2c8.7c26a",
+        "name": "",
+        "func": "msg={\n    discoveryparams:\n    {\n        \"environment_id\":\"system\",\n        \"query\":msg.payload.Input\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 210,
+        "y": 640,
+        "wires": [
+            [
+                "36383e1a.9f64c2"
+            ]
+        ]
+    },
+    {
+        "id": "ba5f5a4b.4d4e28",
+        "type": "function",
+        "z": "bef9f2c8.7c26a",
+        "name": "",
+        "func": "msg.payload=msg.search_results.results[0].text\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 600,
+        "wires": [
+            [
+                "e56d305a.c5975",
+                "1f1e9940.608397",
+                "127c20b2.b5d82f"
+            ]
+        ]
+    },
+    {
+        "id": "be2b3ad7.b9a188",
+        "type": "ui_form",
+        "z": "bef9f2c8.7c26a",
+        "name": "",
+        "label": "News",
+        "group": "9fb2367f.1ad258",
+        "order": 1,
+        "width": "9",
+        "height": "7",
+        "options": [
+            {
+                "label": "Enter the query",
+                "value": "Input",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "Input": ""
+        },
+        "payload": "",
+        "submit": "SUBMIT",
+        "cancel": "RESET",
+        "topic": "",
+        "x": 200,
+        "y": 780,
+        "wires": [
+            [
+                "6fcfec1f.b29ec4"
+            ]
+        ]
+    },
+    {
+        "id": "36383e1a.9f64c2",
+        "type": "watson-discovery-v1",
+        "z": "bef9f2c8.7c26a",
+        "name": "New app",
+        "environmentname": "",
+        "environmentId": "system",
+        "collectionId": "news-en",
+        "configurationname": "",
+        "configurationId": "",
+        "language_code": "en",
+        "collection_name": "",
+        "count": "1",
+        "passages": true,
+        "nlp_query": true,
+        "query": "",
+        "filter": "",
+        "aggregation": "",
+        "return": "",
+        "description": "",
+        "size": "LT",
+        "discovery-method": "query",
+        "service-endpoint": "https://api.eu-gb.discovery.watson.cloud.ibm.com/instances/b29e495d-3353-4111-ba30-5b6f267789bd",
+        "x": 390,
+        "y": 480,
+        "wires": [
+            [
+                "ba5f5a4b.4d4e28"
+            ]
+        ]
+    },
+    {
+        "id": "e56d305a.c5975",
+        "type": "debug",
+        "z": "bef9f2c8.7c26a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 800,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "1f1e9940.608397",
+        "type": "ui_text",
+        "z": "bef9f2c8.7c26a",
+        "group": "9fb2367f.1ad258",
+        "order": 2,
+        "width": "13",
+        "height": "10",
+        "name": "",
+        "label": "Result",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 780,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "127c20b2.b5d82f",
+        "type": "sentiment",
+        "z": "bef9f2c8.7c26a",
+        "name": "",
+        "property": "payload",
+        "x": 830,
+        "y": 600,
+        "wires": [
+            [
+                "897120ed.047d9"
+            ]
+        ]
+    },
+    {
+        "id": "897120ed.047d9",
+        "type": "debug",
+        "z": "bef9f2c8.7c26a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "sentiment",
+        "targetType": "msg",
+        "x": 1070,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "9fb2367f.1ad258",
+        "type": "ui_group",
+        "z": "",
+        "name": "News App",
+        "tab": "c9d3c70f.27b5d8",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "c9d3c70f.27b5d8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "NEWS",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
