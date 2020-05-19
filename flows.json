@@ -132,7 +132,7 @@
         "label": "Result",
         "format": "{{msg.payload}}",
         "layout": "col-center",
-        "x": 780,
+        "x": 840,
         "y": 480,
         "wires": []
     },
@@ -161,9 +161,104 @@
         "tostatus": false,
         "complete": "sentiment",
         "targetType": "msg",
-        "x": 1070,
+        "x": 1050,
         "y": 600,
         "wires": []
+    },
+    {
+        "id": "fe682748.08d688",
+        "type": "function",
+        "z": "bef9f2c8.7c26a",
+        "name": "",
+        "func": "ran=parseInt(Math.random() * 10);\nmsg.topic=\"Random1\";\nmsg.payload=ran;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "323a641b.d8088c",
+                "1d1dab77.f26e15"
+            ]
+        ]
+    },
+    {
+        "id": "323a641b.d8088c",
+        "type": "debug",
+        "z": "bef9f2c8.7c26a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 820,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "a41cb0ec.65f0d",
+        "type": "inject",
+        "z": "bef9f2c8.7c26a",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "fe682748.08d688"
+            ]
+        ]
+    },
+    {
+        "id": "1d1dab77.f26e15",
+        "type": "ui_chart",
+        "z": "bef9f2c8.7c26a",
+        "name": "",
+        "group": "9fb2367f.1ad258",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "40",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 830,
+        "y": 400,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "9fb2367f.1ad258",
